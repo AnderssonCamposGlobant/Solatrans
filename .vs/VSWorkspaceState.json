@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\RegistroAveriasApi.BusinessLogic",
+    "\\RegistroAveriasApi.BusinessLogic\\Data",
+    "\\RegistroAveriasApi.BusinessLogic\\Logic",
+    "\\RegistroAveriasApi.BusinessLogic\\obj",
+    "\\RegistroAveriasApi.Core",
+    "\\RegistroAveriasApi.Core\\Dtos",
+    "\\RegistroAveriasApi.Core\\Entities",
+    "\\RegistroAveriasApi.Core\\Interfaces",
+    "\\RegistroAveriasApi.WebApi",
+    "\\RegistroAveriasApi.WebApi\\Controllers"
+  ],
+  "SelectedNode": "\\RegistroAveriasApi.Core\\Dtos\\EstadoAveriaDto.cs",
+  "PreviewInSolutionExplorer": false
+}
