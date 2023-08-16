@@ -21,6 +21,8 @@ namespace RegistroAveriasApi.Core.Profiles
 
             CreateMap<usuarios, UsuariosDto>().ReverseMap();
 
+            CreateMap<roles, RolesDto>().ReverseMap();
+
             CreateMap<tipo_averia, CreateTipoAveriaDtos>().ReverseMap();
 
             CreateMap<tipo_servicio, CreateTipoServicioDtos>().ReverseMap();

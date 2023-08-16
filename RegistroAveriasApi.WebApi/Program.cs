@@ -27,6 +27,7 @@ builder.Services.AddControllers().AddJsonOptions(json => {
 builder.Services.AddTransient<IEstadoAveriasRepository, EstadoAveriasRepository>();
 builder.Services.AddTransient<IAveriaRepository, AveriaRepository>();
 builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddTransient<IRolRepository, RolesRepository>();
 builder.Services.AddTransient<ITipoAveriaRepository, TipoAveriaRepository>();
 builder.Services.AddTransient<ITipoServicioRepository, TipoServicioRepository>();
 

@@ -28,5 +28,7 @@ namespace RegistroAveriasApi.BusinessLogic.Data
 
         public DbSet<usuarios>? usuarios { get; set; }
 
+        public DbSet<roles>? roles { get; set; }
+
     }
 }
