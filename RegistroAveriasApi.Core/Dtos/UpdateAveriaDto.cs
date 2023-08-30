@@ -32,6 +32,6 @@ namespace RegistroAveriasApi.Core.Dtos
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime fecha_ultima_modificacion { get; set; }
-        public int? modificado_por { get; set; }
+        public string? modificado_por { get; set; }
     }
 }

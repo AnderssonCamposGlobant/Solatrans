@@ -18,9 +18,25 @@ namespace RegistroAveriasApi.BusinessLogic.Data
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
-        public DbSet<estado_averia>? estado_averia { get; set; }
+        public DbSet<estado>? estado_averia { get; set; }
 
-        public DbSet<averias>? averias { get; set; }
+        public DbSet<conductor>? conductor { get; set; }
+
+        public DbSet<linea>? linea { get; set; }
+
+        public DbSet<sublinea>? sublinea { get; set; }
+
+        public DbSet<fichas>? fichas { get; set; }
+
+        public DbSet<parada>? parada { get; set; }
+
+        public DbSet<criticidad>? criticidad { get; set; }
+
+        public DbSet<empresa>? empresa { get; set; }
+
+        ////public DbSet<adjuntos>? adjuntos { get; set; }
+
+        public DbSet<averia>? averia { get; set; }
 
         public DbSet<tipo_averia>? tipo_averia { get; set; }
 

@@ -30,13 +30,13 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
             _mapper = mapper;   
         }
 
-        public async Task<IReadOnlyList<estado_averia>> GetAllAsync()
+        public async Task<IReadOnlyList<estado>> GetAllAsync()
         {
             var getAllEstadoAverias = await _context.estado_averia.ToListAsync();
             return getAllEstadoAverias;
         }
 
-        public async Task<estado_averia> GetEstadoAveriaByIdAsync(int codigo)
+        public async Task<estado> GetEstadoAveriaByIdAsync(int codigo)
         {
             var searchById = await _context.estado_averia.FindAsync(codigo);
             return searchById;
@@ -51,7 +51,7 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
                 throw new NotImplementedException("Estado Averia : '" + estadoAveriaDto.nombre + "' ya existe");
             }
 
-            var estAveria = _mapper.Map<estado_averia>(estadoAveriaDto);
+            var estAveria = _mapper.Map<estado>(estadoAveriaDto);
 
             _context.Add(estAveria);
             _context.SaveChanges();
@@ -64,7 +64,7 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
             if (_context != null)
             {
                 //Find the post for specific post CODIGO of Estado Averia
-                var searchCodigoDelete = await _context.estado_averia.FirstOrDefaultAsync(x => x.codigo == codigo);
+                var searchCodigoDelete = await _context.estado_averia.FirstOrDefaultAsync(x => x.id_estado == codigo);
 
                 if (searchCodigoDelete != null)
                 {

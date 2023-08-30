@@ -10,8 +10,8 @@ namespace RegistroAveriasApi.Core.Interfaces
 {
     public interface IEstadoAveriasRepository
     {
-        Task<IReadOnlyList<estado_averia>> GetAllAsync();
-        Task<estado_averia> GetEstadoAveriaByIdAsync(int codigo);
+        Task<IReadOnlyList<estado>> GetAllAsync();
+        Task<estado> GetEstadoAveriaByIdAsync(int codigo);
         void  addEstadoAveria(CreateEstadoAveriaDto estadoAveria);
         void  update(int codigo, EstadoAveriaUpdateDto estadoAveria);
         Task<int> deleteEstadoAveria(int codigo);

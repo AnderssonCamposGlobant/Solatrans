@@ -19,7 +19,7 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
         }
         public void addTipoAveria(CreateTipoAveriaDtos tipoAveriaDtos)
         {
-            var existAveria = _context.tipo_averia.Any(e => e.codigo == tipoAveriaDtos.codigo);
+            var existAveria = _context.tipo_averia.Any(e => e.id_tipo_averia == tipoAveriaDtos.codigo);
             if (existAveria == true)
             {
                 throw new NotImplementedException("Tipo de Averia ya esta registrada");
@@ -37,7 +37,7 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
 
             if (_context != null)
             {
-                var searchCodigoDelete = await _context.tipo_averia.FirstOrDefaultAsync(x => x.codigo == codigo);
+                var searchCodigoDelete = await _context.tipo_averia.FirstOrDefaultAsync(x => x.id_tipo_averia == codigo);
 
                 if (searchCodigoDelete != null)
                 {

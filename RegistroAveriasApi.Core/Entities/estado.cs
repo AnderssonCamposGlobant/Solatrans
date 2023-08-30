@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace RegistroAveriasApi.Core.Entities
 {
-    public class estado_averia
+    public class estado
     {
         [Key]
-        public int codigo { get; set; }
+        public int id_estado { get; set; }
         public string nombre { get; set; }
         public bool activo { get; set; }
 

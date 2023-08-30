@@ -21,14 +21,14 @@ namespace RegistroAveriasApi.WebApi.Controllers
         }
 
         [HttpGet("/ObtenerTodosLosEstadosAverias")]
-        public async Task<ActionResult<List<estado_averia>>> GetAllAsync()
+        public async Task<ActionResult<List<estado>>> GetAllAsync()
         {
             var getAll = await _estadoAveriasRepository.GetAllAsync();
             return Ok(getAll);
         }
 
         [HttpGet("/BuscarEstadoAveriaPor/{codigo}")]
-        public async Task<ActionResult<estado_averia>> GetEstadoAveriasId(int codigo)
+        public async Task<ActionResult<estado>> GetEstadoAveriasId(int codigo)
         {
             return await _estadoAveriasRepository.GetEstadoAveriaByIdAsync(codigo);
         }

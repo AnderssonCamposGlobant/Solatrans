@@ -13,11 +13,11 @@ namespace RegistroAveriasApi.Core.Profiles
     {
         public AppProfile()
         {
-            CreateMap<estado_averia, CreateEstadoAveriaDto>().ReverseMap();
+            CreateMap<estado, CreateEstadoAveriaDto>().ReverseMap();
 
-            CreateMap<estado_averia, EstadoAveriaUpdateDto>().ReverseMap();
+            CreateMap<estado, EstadoAveriaUpdateDto>().ReverseMap();
 
-            CreateMap<averias, CreateAveriasDto>().ReverseMap();
+            CreateMap<ListaAverias, CreateAveriasDto>().ReverseMap();
 
             CreateMap<usuarios, UsuariosDto>().ReverseMap();
 
