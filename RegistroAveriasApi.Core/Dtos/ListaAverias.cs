@@ -19,27 +19,27 @@ namespace RegistroAveriasApi.Core.Dtos
         public string? descripcion { get; set; }
         [Required]
         [JsonProperty("tipo_averia")]
-        public tipo_averia? tipo_averia { get; set; }
+        public TipoAveriaDto? tipo_averia { get; set; }
 
         [Required]
         [JsonProperty("operador")]
-        public empresa? Operador { get; set; }
+        public OperadorDto? Operador { get; set; }
 
         [Required]
         [JsonProperty("linea")]
-        public linea? Linea { get; set; }
+        public LineaDto? Linea { get; set; }
 
         [Required]
         [JsonProperty("sub_linea")]
-        public sublinea? SubLinea { get; set; }
+        public SubLineaDto? SubLinea { get; set; }
 
         [Required]
         [JsonProperty("criticidad")]
-        public criticidad? criticidad { get; set; }
+        public CriticidadDto? criticidad { get; set; }
 
         [Required]
         [JsonProperty("tipo_servicio")]
-        public tipo_servicio? tipoServicio { get; set; }
+        public TipoServicioDto? tipoServicio { get; set; }
 
         [Required]
         [JsonProperty("placa")]
@@ -51,20 +51,20 @@ namespace RegistroAveriasApi.Core.Dtos
 
         [Required]
         [JsonProperty("conductor")]
-        public conductor? conductor { get; set; }
+        public ConductorDto? conductor { get; set; }
 
         [Required]
         [JsonProperty("parada")]
-        public parada? parada { get; set; }
+        public ParadaDto? parada { get; set; }
 
         [Required]
         [JsonProperty("estado")]
-        public estado? estado { get; set; }
+        public EstadoDto? estado { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime fecha_creacion { get; set; }
 
-        public List<adjuntos>? adjuntos { get; set; }
+        public AdjuntoDto? adjuntos { get; set; }
     }
 }

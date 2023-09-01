@@ -11,7 +11,7 @@ namespace RegistroAveriasApi.Core.Interfaces
     public interface IAveriaRepository
     {
         Task<IReadOnlyList<ListaAverias>> GetAllAsync();
-        Task<averia> GetAveriaByIdAsync(int id_averia);
+        Task<AveriaDetalle> GetAveriaByIdAsync(int id_averia);
         void addAveria(CreateAveriasDto averiaRegistro);
 
         ////void updateAveria(UpdateAveriaDto updateAveriaDto);

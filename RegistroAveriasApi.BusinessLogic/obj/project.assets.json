@@ -5857,6 +5857,7 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
       "Microsoft.AspNet.WebApi.Core >= 5.2.9",
       "NUnit >= 3.13.3",
+      "Newtonsoft.Json >= 13.0.1",
       "Realm >= 11.0.0",
       "RegistroAveriasApi.Core >= 1.0.0",
       "Z.Expressions.Eval >= 5.0.5"
@@ -5926,6 +5927,10 @@
           "NUnit": {
             "target": "Package",
             "version": "[3.13.3, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.1, )"
           },
           "Realm": {
             "target": "Package",

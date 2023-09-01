@@ -32,20 +32,20 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
 
         public async Task<IReadOnlyList<estado>> GetAllAsync()
         {
-            var getAllEstadoAverias = await _context.estado_averia.ToListAsync();
+            var getAllEstadoAverias = await _context.estado.ToListAsync();
             return getAllEstadoAverias;
         }
 
         public async Task<estado> GetEstadoAveriaByIdAsync(int codigo)
         {
-            var searchById = await _context.estado_averia.FindAsync(codigo);
+            var searchById = await _context.estado.FindAsync(codigo);
             return searchById;
         }
 
         public void addEstadoAveria(CreateEstadoAveriaDto estadoAveriaDto)
         {
 
-            var existEstadoAveria = _context.estado_averia.Any(e => e.nombre == estadoAveriaDto.nombre);
+            var existEstadoAveria = _context.estado.Any(e => e.nombre == estadoAveriaDto.nombre);
             if (existEstadoAveria == true)
             {
                 throw new NotImplementedException("Estado Averia : '" + estadoAveriaDto.nombre + "' ya existe");
@@ -64,12 +64,12 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
             if (_context != null)
             {
                 //Find the post for specific post CODIGO of Estado Averia
-                var searchCodigoDelete = await _context.estado_averia.FirstOrDefaultAsync(x => x.id_estado == codigo);
+                var searchCodigoDelete = await _context.estado.FirstOrDefaultAsync(x => x.id_estado == codigo);
 
                 if (searchCodigoDelete != null)
                 {
                     //Delete that Estado Averia
-                    _context.estado_averia.Remove(searchCodigoDelete);
+                    _context.estado.Remove(searchCodigoDelete);
 
                     //Commit the transaction
                     result = await _context.SaveChangesAsync();
@@ -83,7 +83,7 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
         public void update(int codigo, EstadoAveriaUpdateDto estadoAveria)
         {
 
-            var upEstadoAveria = _context.estado_averia.Find(codigo);
+            var upEstadoAveria = _context.estado.Find(codigo);
 
             if (Object.ReferenceEquals(null, upEstadoAveria))
             {
@@ -97,7 +97,7 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
                     throw new NotImplementedException("Estado Averia : '" + upEstadoAveria.nombre + "' NO existe");
                 }
                 _mapper.Map(estadoAveria, upEstadoAveria);
-                _context.estado_averia.Update(upEstadoAveria);
+                _context.estado.Update(upEstadoAveria);
                 _context.SaveChanges();
             }
             catch (Exception ex)

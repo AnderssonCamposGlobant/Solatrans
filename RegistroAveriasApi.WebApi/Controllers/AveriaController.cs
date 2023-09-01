@@ -28,7 +28,7 @@ namespace RegistroAveriasApi.WebApi.Controllers
         }
         
         [HttpGet("/BuscarAveriaPor/{id_averia}")]
-        public async Task<ActionResult<averia>> GetAveriaByIdAsync(int id_averia)
+        public async Task<ActionResult<AveriaDetalle>> GetAveriaByIdAsync(int id_averia)
         {
             return await _averiaRepository.GetAveriaByIdAsync(id_averia);
         }

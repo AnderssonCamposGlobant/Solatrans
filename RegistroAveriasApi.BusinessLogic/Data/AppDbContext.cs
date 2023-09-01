@@ -18,9 +18,11 @@ namespace RegistroAveriasApi.BusinessLogic.Data
         {
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
-        public DbSet<estado>? estado_averia { get; set; }
+        public DbSet<estado>? estado { get; set; }
 
         public DbSet<conductor>? conductor { get; set; }
+
+        public DbSet<seguimiento>? seguimiento { get; set; }
 
         public DbSet<linea>? linea { get; set; }
 
@@ -34,7 +36,7 @@ namespace RegistroAveriasApi.BusinessLogic.Data
 
         public DbSet<empresa>? empresa { get; set; }
 
-        ////public DbSet<adjuntos>? adjuntos { get; set; }
+        public DbSet<adjuntos>? adjuntos { get; set; }
 
         public DbSet<averia>? averia { get; set; }
 

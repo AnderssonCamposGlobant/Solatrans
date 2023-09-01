@@ -1665,6 +1665,7 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "Microsoft.AspNet.WebApi.Core": "5.2.9",
           "NUnit": "3.13.3",
+          "Newtonsoft.Json": "13.0.1",
           "Realm": "11.0.0",
           "RegistroAveriasApi.Core": "1.0.0",
           "Z.Expressions.Eval": "5.0.5"
@@ -6198,6 +6199,7 @@
     "net6.0": [
       "Microsoft.AspNetCore.Mvc.Versioning >= 5.1.0",
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.17.2",
+      "Newtonsoft.Json >= 13.0.1",
       "RegistroAveriasApi.BusinessLogic >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.2.3"
     ]
@@ -6258,6 +6260,10 @@
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
             "target": "Package",
             "version": "[1.17.2, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[13.0.1, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

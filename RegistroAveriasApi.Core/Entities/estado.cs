@@ -12,7 +12,7 @@ namespace RegistroAveriasApi.Core.Entities
     {
         [Key]
         public int id_estado { get; set; }
-        public string nombre { get; set; }
+        public string? nombre { get; set; }
         public bool activo { get; set; }
 
         [DataType(DataType.Date)]

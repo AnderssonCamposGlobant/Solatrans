@@ -12,7 +12,7 @@ namespace RegistroAveriasApi.Core.Entities
     {
         [Key]
         public int id_tipo_averia { get; set; }
-        public string nombre { get; set; }
+        public string? nombre { get; set; }
         
         public bool activo { get; set; }    
 
