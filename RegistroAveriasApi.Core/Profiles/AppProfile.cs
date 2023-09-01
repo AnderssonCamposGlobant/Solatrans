@@ -17,6 +17,10 @@ namespace RegistroAveriasApi.Core.Profiles
 
             CreateMap<estado, EstadoAveriaUpdateDto>().ReverseMap();
 
+            CreateMap<averia, CreateAveriasDto>().ReverseMap();
+
+            CreateMap<adjuntos, CrearAdjuntoDto>().ReverseMap();
+
             CreateMap<ListaAverias, CreateAveriasDto>().ReverseMap();
 
             CreateMap<usuarios, UsuariosDto>().ReverseMap();

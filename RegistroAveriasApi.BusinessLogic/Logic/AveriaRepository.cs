@@ -61,9 +61,19 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
         public async Task<AveriaDetalle> GetAveriaByIdAsync(int id_averia)
         {
             var searchById = await _context.averia.FindAsync(id_averia);
+            var conductor = await _context.conductor.FindAsync(searchById.id_conductor);
+            var tipoAveria = await _context.tipo_averia.FindAsync(searchById.id_tipo_averia);
+            var operador = await _context.empresa.FindAsync(searchById.id_empresa);
+            var linea = await _context.linea.FindAsync(searchById.id_linea);
+            var subLinea = await _context.sublinea.FindAsync(searchById.id_sub_linea);
+            var criticidad = await _context.criticidad.FindAsync(searchById.id_criticidad);
+            var tipoServicio = await _context.tipo_servicio.FindAsync(searchById.id_tipo_servicio);
+            var paradas = await _context.parada.FindAsync(searchById.id_parada);
+            var adjunto = await _context.adjuntos.FindAsync(searchById.id_averia);
+            var estado = await _context.estado.FindAsync(searchById.id_estado_averia);
             var seguimientoRes = await _context.seguimiento.ToListAsync();
-            List<SeguimientoDto> seguimientos = new List<SeguimientoDto>();
-            var averiaRes = getAverias(searchById).FirstOrDefault();
+
+            List<SeguimientoDto> seguimientos = new List<SeguimientoDto>();           
 
             foreach (var item in seguimientoRes)
             {
@@ -78,26 +88,26 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
             AveriaDetalle averia = new AveriaDetalle();
             averia = new AveriaDetalle
             {
-                id_averia = averiaRes.id_averia,
-                descripcion = averiaRes.descripcion,
-                conductor = averiaRes.conductor,
-                tipo_averia = averiaRes.tipoAveria,
-                Linea = averiaRes.linea,
-                SubLinea = averiaRes.subLinea,
-                criticidad = averiaRes.criticidad,
-                tipoServicio = averiaRes.tipoServicio,
-                placa = averiaRes.placa_vehiculo,
-                fichaAutobus = averiaRes.placa_vehiculo,
-                parada = averiaRes.paradas,
-                Operador = averiaRes.operador,
-                adjuntos = averiaRes.adjunto,
-                seguimiento = seguimientos,
-                estado = averiaRes.estado
+                id_averia = searchById.id_averia,
+                descripcion = searchById.descripcion,
+                conductor = new ConductorDto { id_conductor = conductor.id_conductor, nombre_conductor = conductor.nombre_conductor },
+                tipo_averia = new TipoAveriaDto { IdTipoAveria = tipoAveria.id_tipo_averia, nombre = tipoAveria.nombre },
+                Linea = new LineaDto { IdLinea = linea.id_linea, DescripcionLinea = linea.descripcion_linea },
+                SubLinea = new SubLineaDto { IdSubLinea = subLinea.id_sublinea, DescripcionSubLinea = subLinea.nombre_sublinea },
+                criticidad = new CriticidadDto { IdCriticidad = criticidad.id_criticidad, Descripcion = criticidad.descripcion },
+                tipoServicio = new TipoServicioDto { IdTipoServicio = tipoServicio.id_tipo_servicio, nombre = tipoServicio.nombre },
+                placa = searchById.placa_vehiculo,
+                fichaAutobus = searchById.placa_vehiculo,
+                parada = new ParadaDto { IdParada = paradas.id_parada, nombreParada = paradas.nombre_parada },
+                Operador = new OperadorDto { IdEmpresa = operador.id_empresa, nombreEmpresa = operador.nombre_empresa },
+                adjuntos = new AdjuntoDto { IdAdjunto = adjunto.id_adjunto, Nombre = adjunto.nombre, FileBase = adjunto.archivo },
+                estado = new EstadoDto { IdEstado = estado.id_estado, Nombre = estado.nombre },
+                seguimiento = seguimientos
             };
             return averia;
         }
 
-        public void addAveria(CreateAveriasDto averiaRegistro)
+        public void addAveria(CreateAveriasRequest averiaRegistro)
         {
             //verificar este punto debe ser con el .id_averia
             var existAveria = _context.averia.Any(e => e.id_averia == averiaRegistro.id_averia); //averiaRegistro.id_parada);
@@ -107,9 +117,49 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
                 throw new ApplicationException("Averia ya esta registrada");
             }
 
-            var estAveria = _mapper.Map<averia>(averiaRegistro);
+            CreateAveriasDto createAverias = new CreateAveriasDto
+            {
+                id_averia = averiaRegistro.id_averia,
+                id_empresa = averiaRegistro.id_empresa,
+                id_conductor = averiaRegistro.id_conductor,
+                id_estado_averia = averiaRegistro.id_estado,
+                id_linea = averiaRegistro.id_linea,
+                id_criticidad= averiaRegistro.id_criticidad,
+                id_sub_linea = averiaRegistro.id_sub_linea,
+                id_parada = averiaRegistro.id_parada,
+                id_tipo_averia = averiaRegistro.id_tipo_averia,
+                id_tipo_servicio = averiaRegistro.id_tipo_servicio,
+                id_vehiculo = averiaRegistro.id_vehiculo,
+                creado_por = averiaRegistro.creado_por,
+                descripcion = averiaRegistro.descripcion,
+                fecha_creacion = averiaRegistro.fecha_creacion,
+                placa_vehiculo = averiaRegistro.placa_vehiculo,
+                activo = true,
+                fecha_desactivacion = averiaRegistro.fecha_creacion,
+                fecha_ultima_modificacion = averiaRegistro.fecha_creacion,
+                modificado_por = averiaRegistro.creado_por,
+            };
 
+            CrearAdjuntoDto adjunto = new CrearAdjuntoDto
+            {
+                id_adjunto = averiaRegistro.adjuntos.id_adjunto,
+                archivo = averiaRegistro.adjuntos.archivo,
+                nombre = averiaRegistro.adjuntos.nombre,
+                id_averia = averiaRegistro.id_averia,
+                activo = true,
+                creado_por = averiaRegistro.creado_por,
+                fecha_creacion = averiaRegistro.fecha_creacion,
+                fecha_desactivacion = averiaRegistro.fecha_creacion,
+                fecha_ultima_modificacion = averiaRegistro.fecha_creacion,
+                modificado_por = averiaRegistro.creado_por
+            };
+
+            var estAveria = _mapper.Map<averia>(createAverias);
             _context.Add(estAveria);
+            _context.SaveChanges();
+
+            var adjuntos = _mapper.Map<adjuntos>(adjunto);           
+            _context.Add(adjuntos);
             _context.SaveChanges();
         }
 

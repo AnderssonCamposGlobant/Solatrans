@@ -34,7 +34,7 @@ namespace RegistroAveriasApi.WebApi.Controllers
         }
 
         [HttpPost("/RegistrarAveria")]
-        public IActionResult addAveria([FromBody] CreateAveriasDto averias)
+        public IActionResult addAveria([FromBody] CreateAveriasRequest averias)
         {
             _averiaRepository.addAveria(averias);
             return Ok(new { Message = "Registro de Averia Creado con Exito" });

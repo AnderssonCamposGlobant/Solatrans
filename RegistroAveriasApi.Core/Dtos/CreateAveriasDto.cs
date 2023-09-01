@@ -31,12 +31,24 @@ namespace RegistroAveriasApi.Core.Dtos
         public int id_conductor { get; set; }
         [Required]
         public int id_parada { get; set; }
-        public int id_estado { get; set; }
+        public int id_estado_averia { get; set; }
+
+        public int id_criticidad { get; set; }
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime fecha_creacion { get; set; }
-        public int creado_por { get; set; }
+        public string? creado_por { get; set; }
+        public bool activo { get; set; }
 
-        public List<adjuntos>? adjuntos { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? fecha_desactivacion { get; set; }
+       
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? fecha_ultima_modificacion { get; set; }
+
+        public string? modificado_por { get; set; }
     }
 }
