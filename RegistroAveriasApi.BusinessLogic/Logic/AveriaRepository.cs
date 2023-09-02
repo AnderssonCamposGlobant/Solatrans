@@ -183,32 +183,53 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
             return result;
         }  
 
-        public void updateAveria(UpdateAveriaDto updateAveriaDto)
+        public void updateAveria(CreateAveriasRequest updateAveriaDto)
         {
-            var updateAveria = _context.averia.Find(updateAveriaDto.id_averia);
-
-           if (updateAveria != null)
+            var existAveria = _context.averia.Any(e => e.id_averia == updateAveriaDto.id_averia); //averiaRegistro.id_parada);
+            updateAveriaDto.fecha_creacion = DateTime.UtcNow;
+            if (existAveria != true)
             {
-                var updateAveriaUp = new averia()
-                {
-                    id_empresa = updateAveriaDto.id_operador,
-                    id_tipo_averia = updateAveriaDto.cod_tipo_averia,
-                    id_tipo_servicio = updateAveriaDto.cod_tipo_servicio,
-                    descripcion = updateAveriaDto.descripcion,
-                    id_estado_averia = updateAveriaDto.cod_estado,
-                    id_vehiculo = updateAveriaDto.id_ficha_autobus,
-                    id_linea = updateAveriaDto.id_linea,
-                    id_parada = updateAveriaDto.id_parada,
-                    fecha_ultima_modificacion = DateTime.UtcNow,
-                    id_conductor = updateAveriaDto.id_conductor,
-                    id_sub_linea = updateAveriaDto.id_sublinea,
-                    modificado_por = updateAveriaDto.modificado_por,
-                    placa_vehiculo = updateAveriaDto.placa
-                };
-
-                _context.averia.Update(updateAveria);
-                _context.SaveChangesAsync();
+                throw new ApplicationException("Averia no esta registrada");
             }
+
+            UpdateAveriaDto update = new UpdateAveriaDto
+            {
+                id_averia = updateAveriaDto.id_averia,
+                id_empresa = updateAveriaDto.id_empresa,
+                id_conductor = updateAveriaDto.id_conductor,
+                id_estado_averia = updateAveriaDto.id_estado,
+                id_linea = updateAveriaDto.id_linea,
+                id_criticidad = updateAveriaDto.id_criticidad,
+                id_sub_linea = updateAveriaDto.id_sub_linea,
+                id_parada = updateAveriaDto.id_parada,
+                id_tipo_averia = updateAveriaDto.id_tipo_averia,
+                id_tipo_servicio = updateAveriaDto.id_tipo_servicio,
+                id_vehiculo = updateAveriaDto.id_vehiculo,
+                creado_por = updateAveriaDto.creado_por,
+                descripcion = updateAveriaDto.descripcion,
+                placa_vehiculo = updateAveriaDto.placa_vehiculo,
+                activo = true,
+                fecha_desactivacion = updateAveriaDto.fecha_creacion,
+                fecha_ultima_modificacion = updateAveriaDto.fecha_creacion,
+                modificado_por = updateAveriaDto.creado_por,
+            };
+
+            CrearAdjuntoDto adjunto = new CrearAdjuntoDto
+            {
+                id_adjunto = updateAveriaDto.adjuntos.id_adjunto,
+                archivo = updateAveriaDto.adjuntos.archivo,
+                nombre = updateAveriaDto.adjuntos.nombre,
+                id_averia = updateAveriaDto.id_averia,
+                activo = true,
+                creado_por = updateAveriaDto.creado_por,
+                fecha_creacion = updateAveriaDto.fecha_creacion,
+                fecha_desactivacion = updateAveriaDto.fecha_creacion,
+                fecha_ultima_modificacion = updateAveriaDto.fecha_creacion,
+                modificado_por = updateAveriaDto.creado_por
+            };
+            var estAveria = _mapper.Map<averia>(update);
+            _context.averia.Update(estAveria);
+            _context.SaveChangesAsync();
         }
 
         private List<dynamic> getAverias(dynamic averia) 

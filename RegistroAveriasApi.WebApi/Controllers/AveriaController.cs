@@ -40,6 +40,13 @@ namespace RegistroAveriasApi.WebApi.Controllers
             return Ok(new { Message = "Registro de Averia Creado con Exito" });
         }
 
+        [HttpPost("/UpdateAveria")]
+        public IActionResult updateAveria([FromBody] CreateAveriasRequest averias)
+        {
+            _averiaRepository.updateAveria(averias);
+            return Ok(new { Message = "Actualización de Averia con Exito" });
+        }
+
         [HttpDelete("/EliminarAveria")]
         public async Task<IActionResult> deleteAveria(int id_averia)
         {

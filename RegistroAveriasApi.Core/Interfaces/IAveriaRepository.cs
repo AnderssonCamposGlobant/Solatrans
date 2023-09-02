@@ -13,8 +13,7 @@ namespace RegistroAveriasApi.Core.Interfaces
         Task<IReadOnlyList<ListaAverias>> GetAllAsync();
         Task<AveriaDetalle> GetAveriaByIdAsync(int id_averia);
         void addAveria(CreateAveriasRequest averiaRegistro);
-
-        ////void updateAveria(UpdateAveriaDto updateAveriaDto);
+        void updateAveria(CreateAveriasRequest averiaRegistro);
         Task<int> deleteAveria(int id_averia);
     }
 }
