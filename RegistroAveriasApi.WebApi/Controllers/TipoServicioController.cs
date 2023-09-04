@@ -21,14 +21,14 @@ namespace RegistroAveriasApi.WebApi.Controllers
         }
 
         [HttpGet("/ObtenerTodosLosTiposDeServicio")]
-        public async Task<ActionResult<List<tipo_servicio>>> GetAllAsync()
+        public async Task<ActionResult<List<tipo_servicios>>> GetAllAsync()
         {
             var getAll = await _tipoServicioRepository.GetAllAsync();
             return Ok(getAll);
         }
 
         [HttpGet("/BuscarTipoDeServicioPor/{codigo}")]
-        public async Task<ActionResult<tipo_servicio>> GetAveriaByIdAsync(int codigo)
+        public async Task<ActionResult<tipo_servicios>> GetAveriaByIdAsync(int codigo)
         {
             return await _tipoServicioRepository.GetTipoServicioByIdAsync(codigo);
         }

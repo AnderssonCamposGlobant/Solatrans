@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\YrmaryMedinaDelgado\\Downloads\\Averias\\Solatrans\\RegistroAveriasApi.Core\\RegistroAveriasApi.Core.csproj": {}
+    "C:\\repo\\Solatrans\\RegistroAveriasApi.Core\\RegistroAveriasApi.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\YrmaryMedinaDelgado\\Downloads\\Averias\\Solatrans\\RegistroAveriasApi.Core\\RegistroAveriasApi.Core.csproj": {
+    "C:\\repo\\Solatrans\\RegistroAveriasApi.Core\\RegistroAveriasApi.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\YrmaryMedinaDelgado\\Downloads\\Averias\\Solatrans\\RegistroAveriasApi.Core\\RegistroAveriasApi.Core.csproj",
+        "projectUniqueName": "C:\\repo\\Solatrans\\RegistroAveriasApi.Core\\RegistroAveriasApi.Core.csproj",
         "projectName": "RegistroAveriasApi.Core",
-        "projectPath": "C:\\Users\\YrmaryMedinaDelgado\\Downloads\\Averias\\Solatrans\\RegistroAveriasApi.Core\\RegistroAveriasApi.Core.csproj",
-        "packagesPath": "C:\\Users\\YrmaryMedinaDelgado\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\YrmaryMedinaDelgado\\Downloads\\Averias\\Solatrans\\RegistroAveriasApi.Core\\obj\\",
+        "projectPath": "C:\\repo\\Solatrans\\RegistroAveriasApi.Core\\RegistroAveriasApi.Core.csproj",
+        "packagesPath": "C:\\Users\\mcampos\\.nuget\\packages\\",
+        "outputPath": "C:\\repo\\Solatrans\\RegistroAveriasApi.Core\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\YrmaryMedinaDelgado\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\mcampos\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,8 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nexus.new.bancoink.biz/repository/CoinkDev": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -82,7 +77,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -91,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

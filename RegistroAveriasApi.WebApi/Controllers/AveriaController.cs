@@ -20,34 +20,34 @@ namespace RegistroAveriasApi.WebApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("/ObtenerTodasLasAverias")]
+        [HttpGet("/api/Averias")]
         public async Task<ActionResult<List<ListaAverias>>> GetAllAsync()
         {
             var getAll = await _averiaRepository.GetAllAsync();
             return Ok(getAll);
         }
         
-        [HttpGet("/BuscarAveriaPor/{id_averia}")]
+        [HttpGet("/api/Averias/{id_averia}")]
         public async Task<ActionResult<AveriaDetalle>> GetAveriaByIdAsync(int id_averia)
         {
             return await _averiaRepository.GetAveriaByIdAsync(id_averia);
         }
 
-        [HttpPost("/RegistrarAveria")]
+        [HttpPost("/api/AddAveria")]
         public IActionResult addAveria([FromBody] CreateAveriasRequest averias)
         {
             _averiaRepository.addAveria(averias);
             return Ok(new { Message = "Registro de Averia Creado con Exito" });
         }
 
-        [HttpPost("/UpdateAveria")]
+        [HttpPost("/api/UpdateAveria")]
         public IActionResult updateAveria([FromBody] CreateAveriasRequest averias)
         {
             _averiaRepository.updateAveria(averias);
             return Ok(new { Message = "Actualización de Averia con Exito" });
         }
 
-        [HttpDelete("/EliminarAveria")]
+        [HttpDelete("/api/DeleteAveria/{id_averia}")]
         public async Task<IActionResult> deleteAveria(int id_averia)
         {
             int result = 0;

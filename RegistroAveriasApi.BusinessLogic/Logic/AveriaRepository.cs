@@ -21,17 +21,17 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
 
         public async Task<IReadOnlyList<ListaAverias>> GetAllAsync()
         {
-            var getAllAverias = await _context.averia.ToListAsync();
+            var getAllAverias = await _context.averias.ToListAsync();
             List<ListaAverias> list = new List<ListaAverias>();
             foreach (var item in getAllAverias)
             {
                 var conductor = await _context.conductor.FindAsync(item.id_conductor);
-                var tipoAveria = await _context.tipo_averia.FindAsync(item.id_tipo_averia);
+                var tipoAveria = await _context.tipo_averias.FindAsync(item.id_tipo_averia);
                 var operador = await _context.empresa.FindAsync(item.id_empresa);
                 var linea = await _context.linea.FindAsync(item.id_linea);
                 var subLinea = await _context.sublinea.FindAsync(item.id_sub_linea);
                 var criticidad = await _context.criticidad.FindAsync(item.id_criticidad);
-                var tipoServicio = await _context.tipo_servicio.FindAsync(item.id_tipo_servicio);
+                var tipoServicio = await _context.tipo_servicios.FindAsync(item.id_tipo_servicio);
                 var paradas = await _context.parada.FindAsync(item.id_parada);
                 var adjunto = await _context.adjuntos.FindAsync(item.id_averia);
                 var estado = await _context.estado.FindAsync(item.id_estado_averia);
@@ -60,14 +60,14 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
 
         public async Task<AveriaDetalle> GetAveriaByIdAsync(int id_averia)
         {
-            var searchById = await _context.averia.FindAsync(id_averia);
+            var searchById = await _context.averias.FindAsync(id_averia);
             var conductor = await _context.conductor.FindAsync(searchById.id_conductor);
-            var tipoAveria = await _context.tipo_averia.FindAsync(searchById.id_tipo_averia);
+            var tipoAveria = await _context.tipo_averias.FindAsync(searchById.id_tipo_averia);
             var operador = await _context.empresa.FindAsync(searchById.id_empresa);
             var linea = await _context.linea.FindAsync(searchById.id_linea);
             var subLinea = await _context.sublinea.FindAsync(searchById.id_sub_linea);
             var criticidad = await _context.criticidad.FindAsync(searchById.id_criticidad);
-            var tipoServicio = await _context.tipo_servicio.FindAsync(searchById.id_tipo_servicio);
+            var tipoServicio = await _context.tipo_servicios.FindAsync(searchById.id_tipo_servicio);
             var paradas = await _context.parada.FindAsync(searchById.id_parada);
             var adjunto = await _context.adjuntos.FindAsync(searchById.id_averia);
             var estado = await _context.estado.FindAsync(searchById.id_estado_averia);
@@ -110,7 +110,7 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
         public void addAveria(CreateAveriasRequest averiaRegistro)
         {
             //verificar este punto debe ser con el .id_averia
-            var existAveria = _context.averia.Any(e => e.id_averia == averiaRegistro.id_averia); //averiaRegistro.id_parada);
+            var existAveria = _context.averias.Any(e => e.id_averia == averiaRegistro.id_averia); //averiaRegistro.id_parada);
             averiaRegistro.fecha_creacion = DateTime.UtcNow;
             if (existAveria == true)
             {
@@ -154,7 +154,7 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
                 modificado_por = averiaRegistro.creado_por
             };
 
-            var estAveria = _mapper.Map<averia>(createAverias);
+            var estAveria = _mapper.Map<averias>(createAverias);
             _context.Add(estAveria);
             _context.SaveChanges();
 
@@ -166,26 +166,52 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
         public async Task<int> deleteAveria(int id_averia)
         {
             int result = 0;
-
-            if (_context != null)
+            try { 
+            var searchById = await _context.averias.FindAsync(id_averia);
+            searchById.fecha_creacion = DateTime.UtcNow;
+            if (searchById == null)
             {
-                var searchIdDelete = await _context.averia.FirstOrDefaultAsync(x => x.id_averia == id_averia);
-
-                if (searchIdDelete != null)
-                {
-                    _context.averia.Remove(searchIdDelete);
-
-                    result = await _context.SaveChangesAsync();
-                }
-                return result;
+                throw new ApplicationException("Averia no esta registrada");
             }
 
+            UpdateAveriaDto update = new UpdateAveriaDto
+            {
+                id_averia = searchById.id_averia,
+                id_empresa = searchById.id_empresa,
+                id_conductor = searchById.id_conductor,
+                id_estado_averia = 3,
+                id_linea = searchById.id_linea,
+                id_criticidad = searchById.id_criticidad,
+                id_sub_linea = searchById.id_sub_linea,
+                id_parada = searchById.id_parada,
+                id_tipo_averia = searchById.id_tipo_averia,
+                id_tipo_servicio = searchById.id_tipo_servicio,
+                id_vehiculo = searchById.id_vehiculo,
+                creado_por = searchById.creado_por,
+                descripcion = searchById.descripcion,
+                placa_vehiculo = searchById.placa_vehiculo,
+                activo = false,
+                fecha_desactivacion = searchById.fecha_creacion,
+                fecha_ultima_modificacion = searchById.fecha_creacion,
+                modificado_por = searchById.creado_por,
+            };
+
+            var estAveria = _mapper.Map<averias>(update);
+            _context.averias.Update(estAveria);
+            result = await _context.SaveChangesAsync();
+
             return result;
+            }
+            catch(Exception e)
+            {
+                System.Console.WriteLine(e.Message);
+                throw ;
+            }
         }  
 
         public void updateAveria(CreateAveriasRequest updateAveriaDto)
         {
-            var existAveria = _context.averia.Any(e => e.id_averia == updateAveriaDto.id_averia); //averiaRegistro.id_parada);
+            var existAveria = _context.averias.Any(e => e.id_averia == updateAveriaDto.id_averia); //averiaRegistro.id_parada);
             updateAveriaDto.fecha_creacion = DateTime.UtcNow;
             if (existAveria != true)
             {
@@ -227,8 +253,8 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
                 fecha_ultima_modificacion = updateAveriaDto.fecha_creacion,
                 modificado_por = updateAveriaDto.creado_por
             };
-            var estAveria = _mapper.Map<averia>(update);
-            _context.averia.Update(estAveria);
+            var estAveria = _mapper.Map<averias>(update);
+            _context.averias.Update(estAveria);
             _context.SaveChangesAsync();
         }
 
@@ -238,12 +264,12 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
             foreach (var item in averia)
             {
                 var conductor = _context.conductor.FindAsync(item.id_conductor);
-                var tipoAveria = _context.tipo_averia.FindAsync(item.id_tipo_averia);
+                var tipoAveria = _context.tipo_averias.FindAsync(item.id_tipo_averia);
                 var operador = _context.empresa.FindAsync(item.id_empresa);
                 var linea = _context.linea.FindAsync(item.id_linea);
                 var subLinea = _context.sublinea.FindAsync(item.id_sub_linea);
                 var criticidad = _context.criticidad.FindAsync(item.id_criticidad);
-                var tipoServicio = _context.tipo_servicio.FindAsync(item.id_tipo_servicio);
+                var tipoServicio = _context.tipo_servicios.FindAsync(item.id_tipo_servicio);
                 var paradas = _context.parada.FindAsync(item.id_parada);
                 var adjunto = _context.adjuntos.FindAsync(item.id_averia);
 

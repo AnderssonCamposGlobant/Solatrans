@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\inetpub\wwwroot\SolatransAPIs</_PublishTargetUrl>
+    <History>True|2023-09-03T22:52:43.0740546Z;True|2023-09-03T22:49:05.4382618+00:00;False|2023-09-03T22:45:51.2673502+00:00;False|2023-09-03T22:44:52.6866598+00:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

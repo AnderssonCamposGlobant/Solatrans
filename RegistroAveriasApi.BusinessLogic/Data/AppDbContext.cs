@@ -38,11 +38,11 @@ namespace RegistroAveriasApi.BusinessLogic.Data
 
         public DbSet<adjuntos>? adjuntos { get; set; }
 
-        public DbSet<averia>? averia { get; set; }
+        public DbSet<averias>? averias { get; set; }
 
-        public DbSet<tipo_averia>? tipo_averia { get; set; }
+        public DbSet<tipo_averias>? tipo_averias { get; set; }
 
-        public DbSet<tipo_servicio>? tipo_servicio { get; set; }
+        public DbSet<tipo_servicios>? tipo_servicios { get; set; }
 
         public DbSet<usuarios>? usuarios { get; set; }
 

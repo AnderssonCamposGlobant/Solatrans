@@ -25,27 +25,27 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
 
      
 
-        public async Task<IReadOnlyList<tipo_servicio>> GetAllAsync()
+        public async Task<IReadOnlyList<tipo_servicios>> GetAllAsync()
         {
-            var getAllAverias = await _context.tipo_servicio.ToListAsync();
+            var getAllAverias = await _context.tipo_servicios.ToListAsync();
             return getAllAverias;
         }
 
-        public async Task<tipo_servicio> GetTipoServicioByIdAsync(int codigo)
+        public async Task<tipo_servicios> GetTipoServicioByIdAsync(int codigo)
         {
-            var searchById = await _context.tipo_servicio.FindAsync(codigo);
+            var searchById = await _context.tipo_servicios.FindAsync(codigo);
             return searchById;
         }
 
         public void addTipoServicio(CreateTipoServicioDtos tipoServicioDtos)
         {
-            var existAveria = _context.tipo_servicio.Any(e => e.id_tipo_servicio == tipoServicioDtos.codigo);
+            var existAveria = _context.tipo_servicios.Any(e => e.id_tipo_servicio == tipoServicioDtos.codigo);
             if (existAveria == true)
             {
                 throw new NotImplementedException("Tipo de Servicio ya esta registrada");
             }
 
-            var estAveria = _mapper.Map<tipo_servicio>(tipoServicioDtos);
+            var estAveria = _mapper.Map<tipo_servicios>(tipoServicioDtos);
 
             _context.Add(estAveria);
             _context.SaveChanges();
@@ -57,11 +57,11 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
 
             if (_context != null)
             {
-                var searchCodigoDelete = await _context.tipo_servicio.FirstOrDefaultAsync(x => x.id_tipo_servicio == codigo);
+                var searchCodigoDelete = await _context.tipo_servicios.FirstOrDefaultAsync(x => x.id_tipo_servicio == codigo);
 
                 if (searchCodigoDelete != null)
                 {
-                    _context.tipo_servicio.Remove(searchCodigoDelete);
+                    _context.tipo_servicios.Remove(searchCodigoDelete);
 
                     result = await _context.SaveChangesAsync();
                 }

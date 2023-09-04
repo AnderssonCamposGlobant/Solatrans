@@ -1,0 +1,14 @@
+C:\repo\Solatrans\RegistroAveriasApi.Core\bin\Release\net6.0\RegistroAveriasApi.Core.deps.json
+C:\repo\Solatrans\RegistroAveriasApi.Core\bin\Release\net6.0\RegistroAveriasApi.Core.runtimeconfig.json
+C:\repo\Solatrans\RegistroAveriasApi.Core\bin\Release\net6.0\RegistroAveriasApi.Core.dll
+C:\repo\Solatrans\RegistroAveriasApi.Core\bin\Release\net6.0\RegistroAveriasApi.Core.pdb
+C:\repo\Solatrans\RegistroAveriasApi.Core\obj\Release\net6.0\RegistroAveriasApi.Core.csproj.AssemblyReference.cache
+C:\repo\Solatrans\RegistroAveriasApi.Core\obj\Release\net6.0\RegistroAveriasApi.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\repo\Solatrans\RegistroAveriasApi.Core\obj\Release\net6.0\RegistroAveriasApi.Core.AssemblyInfoInputs.cache
+C:\repo\Solatrans\RegistroAveriasApi.Core\obj\Release\net6.0\RegistroAveriasApi.Core.AssemblyInfo.cs
+C:\repo\Solatrans\RegistroAveriasApi.Core\obj\Release\net6.0\RegistroAveriasApi.Core.csproj.CoreCompileInputs.cache
+C:\repo\Solatrans\RegistroAveriasApi.Core\obj\Release\net6.0\RegistroAveriasApi.Core.dll
+C:\repo\Solatrans\RegistroAveriasApi.Core\obj\Release\net6.0\refint\RegistroAveriasApi.Core.dll
+C:\repo\Solatrans\RegistroAveriasApi.Core\obj\Release\net6.0\RegistroAveriasApi.Core.pdb
+C:\repo\Solatrans\RegistroAveriasApi.Core\obj\Release\net6.0\RegistroAveriasApi.Core.genruntimeconfig.cache
+C:\repo\Solatrans\RegistroAveriasApi.Core\obj\Release\net6.0\ref\RegistroAveriasApi.Core.dll

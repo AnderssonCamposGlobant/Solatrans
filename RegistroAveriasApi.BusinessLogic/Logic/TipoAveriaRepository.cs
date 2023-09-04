@@ -19,13 +19,13 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
         }
         public void addTipoAveria(CreateTipoAveriaDtos tipoAveriaDtos)
         {
-            var existAveria = _context.tipo_averia.Any(e => e.id_tipo_averia == tipoAveriaDtos.codigo);
+            var existAveria = _context.tipo_averias.Any(e => e.id_tipo_averia == tipoAveriaDtos.codigo);
             if (existAveria == true)
             {
                 throw new NotImplementedException("Tipo de Averia ya esta registrada");
             }
 
-            var estAveria = _mapper.Map<tipo_averia>(tipoAveriaDtos);
+            var estAveria = _mapper.Map<tipo_averias>(tipoAveriaDtos);
 
             _context.Add(estAveria);
             _context.SaveChanges();
@@ -37,11 +37,11 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
 
             if (_context != null)
             {
-                var searchCodigoDelete = await _context.tipo_averia.FirstOrDefaultAsync(x => x.id_tipo_averia == codigo);
+                var searchCodigoDelete = await _context.tipo_averias.FirstOrDefaultAsync(x => x.id_tipo_averia == codigo);
 
                 if (searchCodigoDelete != null)
                 {
-                    _context.tipo_averia.Remove(searchCodigoDelete);
+                    _context.tipo_averias.Remove(searchCodigoDelete);
 
                     result = await _context.SaveChangesAsync();
                 }
@@ -51,15 +51,15 @@ namespace RegistroAveriasApi.BusinessLogic.Logic
             return result;
         }
 
-        public async Task<IReadOnlyList<tipo_averia>> GetAllAsync()
+        public async Task<IReadOnlyList<tipo_averias>> GetAllAsync()
         {
-            var getAllAverias = await _context.tipo_averia.ToListAsync();
+            var getAllAverias = await _context.tipo_averias.ToListAsync();
             return getAllAverias;
         }
 
-        public async Task<tipo_averia> GetTipoAveriaByIdAsync(int codigo)
+        public async Task<tipo_averias> GetTipoAveriaByIdAsync(int codigo)
         {
-            var searchById = await _context.tipo_averia.FindAsync(codigo);
+            var searchById = await _context.tipo_averias.FindAsync(codigo);
             return searchById;
         }
     }

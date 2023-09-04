@@ -10,8 +10,8 @@ namespace RegistroAveriasApi.Core.Interfaces
 {
     public interface ITipoServicioRepository
     {
-        Task<IReadOnlyList<tipo_servicio>> GetAllAsync();
-        Task<tipo_servicio> GetTipoServicioByIdAsync(int codigo);
+        Task<IReadOnlyList<tipo_servicios>> GetAllAsync();
+        Task<tipo_servicios> GetTipoServicioByIdAsync(int codigo);
         void addTipoServicio(CreateTipoServicioDtos tipoServicioDtos);
         //void updateTipoServicio(int codigo, EstadoAveriaUpdateDto estadoAveria);
         Task<int> deleteTipoServicio(int codigo);

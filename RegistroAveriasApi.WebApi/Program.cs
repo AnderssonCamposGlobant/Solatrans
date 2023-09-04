@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.Extensions.DependencyInjection;
 using RegistroAveriasApi.BusinessLogic.Data;
 using RegistroAveriasApi.BusinessLogic.Logic;
@@ -16,6 +17,8 @@ builder.Services.AddControllers();
 builder.Services.AddAutoMapper(typeof(AppProfile));
 
 builder.Services.AddDbContext<AppDbContext>(opt => {
+
+    System.Console.WriteLine("String de conexion" + builder.Configuration.GetConnectionString("AveriasConn"));
     opt.UseNpgsql(builder.Configuration.GetConnectionString("AveriasConn"));
 });
 

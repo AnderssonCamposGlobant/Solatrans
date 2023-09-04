@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "8d7GgHSzy2ZSl4559uMnxMQtySecnzAva4zAk3S4at0=",
+  "Source": "RegistroAveriasApi.WebApi",
+  "BasePath": "_content/RegistroAveriasApi.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
